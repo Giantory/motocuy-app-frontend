@@ -1,5 +1,6 @@
 //** react imports */
 import { useEffect, useState, useContext } from 'react';
+
 // ** MUI Imports
 import { FilterContext } from 'src/pages/drivers';
 import Card from '@mui/material/Card'
@@ -18,7 +19,7 @@ const ActiveDriversCounterCard = () => {
 
   useEffect(() => {
 
-    fetch('http://localhost:3000/api/drivers/getActiveDrivers', {
+    fetch('https://motocuy-app-backend-production.up.railway.app/api/drivers/getActiveDrivers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ department: departmentSelected, province: provinceSelected, district: districtSelected})
@@ -33,7 +34,8 @@ const ActiveDriversCounterCard = () => {
       })
 
   }, [departmentSelected, provinceSelected, districtSelected])
-  return (
+  
+return (
     <Card>
       <CardContent
         sx={{

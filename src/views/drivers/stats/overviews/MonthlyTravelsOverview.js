@@ -1,4 +1,5 @@
 import ReactApexcharts from 'src/@core/components/react-apexcharts'
+
 //** react imports */
 import { useEffect, useState, useContext } from 'react';
 import { FilterContext } from 'src/pages/drivers';
@@ -12,7 +13,7 @@ const MonthlyTravelsOverview = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:3000/api/travels/getTravelsPerMonth', {
+        fetch('https://motocuy-app-backend-production.up.railway.app/api/travels/getTravelsPerMonth', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ department: departmentSelected, province: provinceSelected, district: districtSelected })
@@ -67,7 +68,8 @@ const MonthlyTravelsOverview = () => {
                 data[11] = dataPerMonth[index].COUNT;
             }
         }
-        return data
+        
+return data
     }
 
     // ** Hook

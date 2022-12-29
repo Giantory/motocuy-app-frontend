@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+
 //import context
 import { FilterContext } from 'src/pages/drivers';
 
@@ -52,7 +53,8 @@ function descendingComparator(a, b, orderBy) {
   if (b[orderBy] > a[orderBy]) {
     return 1;
   }
-  return 0;
+  
+return 0;
 }
 
 function getComparator(order, orderBy) {
@@ -70,9 +72,11 @@ function stableSort(array, comparator) {
     if (order !== 0) {
       return order;
     }
-    return a[1] - b[1];
+    
+return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  
+return stabilizedThis.map((el) => el[0]);
 }
 
 const headCells = [
@@ -111,6 +115,7 @@ const headCells = [
 function EnhancedTableHead(props) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
+
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -172,7 +177,7 @@ export default function EnhancedTable() {
 
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/drivers/getAllDrivers', {
+    fetch('https://motocuy-app-backend-production.up.railway.app/api/drivers/getAllDrivers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ department: departmentSelected, province: provinceSelected, district: districtSelected })
@@ -189,7 +194,7 @@ export default function EnhancedTable() {
   }, [departmentSelected, provinceSelected, districtSelected])
 
   const fetchDriver = (driverId) => {
-    fetch('http://localhost:3000/api/drivers/getDriver', {
+    fetch('https://motocuy-app-backend-production.up.railway.app/api/drivers/getDriver', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ driver: "'" + driverId + "'" }),
@@ -202,8 +207,9 @@ export default function EnhancedTable() {
         setDriver(response);
       })
   }
+
   const fetchTravels = (placa) => {
-    fetch('http://localhost:3000/api/travels/getTravelsPerDriver', {
+    fetch('https://motocuy-app-backend-production.up.railway.app/api/travels/getTravelsPerDriver', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ placa: "'" + placa + "'" }),
@@ -217,8 +223,9 @@ export default function EnhancedTable() {
         console.log(response);
       })
   }
+
   const fetchPayments = (idDriver) => {
-    fetch('http://localhost:3000/api/payments/getPaymentsPerDriver', {
+    fetch('https://motocuy-app-backend-production.up.railway.app/api/payments/getPaymentsPerDriver', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id_firebase: "'" + idDriver + "'" }),
@@ -296,7 +303,7 @@ export default function EnhancedTable() {
                     <TableRow
                       hover
                       tabIndex={-1}
-                      key={driver.fullname}
+                      key={driver.id_firebase}
                     >
 
                       <TableCell

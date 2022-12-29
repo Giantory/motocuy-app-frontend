@@ -24,7 +24,7 @@ const ResumenMap = () => {
   const [panicEvents, setPanicEvents] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/panicEvent/getPanicEvent', {
+    fetch('https://motocuy-app-backend-production.up.railway.app/api/panicEvent/getPanicEvent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -38,6 +38,7 @@ const ResumenMap = () => {
   }, [])
 
   console.log(center)
+
   const formatCoordinates = (coordinates) => {
 
     return [coordinates.split(':')[0], coordinates.split(':')[1]];
@@ -51,7 +52,8 @@ const ResumenMap = () => {
   const onEachDistrict = (district , layer) => {
     layer.bindPopup(district.properties.NOMBDIST);
   }
-  return (
+  
+return (
     <div>
       <MapContainer style={{ width: '100vm', height: '100vh' }} zoom={2} center={center}>
         <GeoJSON 
